@@ -1,22 +1,29 @@
 <div class="todo-list-group-container">
   <div *ngFor="let todolist of todoListGroup">
     <div class="todo-list-container">
-      <mat-card *ngFor="let todotask of todolist.todoList" class="todo-list-item">
-        <mat-card-header>
-          <mat-card-title class="todo-task-card-title">
-            <span>{{todotask.title}}</span>
-          </mat-card-title>
-          <mat-card-subtitle>
-              <span>{{todotask.state}}</span>
-          </mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>{{todotask.description}}</mat-card-content>
-        <mat-card-footer>
-          
-        </mat-card-footer>
-      </mat-card>
+      <div class="todo-list-title">
+        <h3>{{todolist.title}}</h3>
+        <mat-chip-list>
+          <mat-chip color="primary" selected>{{todolist.todoList.length}}</mat-chip>
+        </mat-chip-list>
+      </div>
+      <div class="todo-list-content">
+        <mat-card *ngFor="let todotask of todolist.todoList" class="todo-list-item">
+          <mat-card-header>
+            <mat-card-title class="todo-task-card-title">
+              <span>{{todotask.title}}</span>
+            </mat-card-title>
+            <mat-card-subtitle>
+                <span>{{todotask.state}}</span>
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>{{todotask.description}}</mat-card-content>
+          <mat-card-footer>
+            
+          </mat-card-footer>
+        </mat-card>
+      </div>
     </div>
     <mat-divider vertical="true"></mat-divider>
-  </div>
   </div>
 </div>

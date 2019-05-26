@@ -1,4 +1,4 @@
-import { eTodoState } from './todo-state';
+import { eTodoState } from '../mocks/todo-state.mock';
 
 export class TodoTaskModel {
     state : eTodoState;
