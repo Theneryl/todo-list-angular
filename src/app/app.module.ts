@@ -8,8 +8,9 @@ import { TodoTaskComponent } from './todo-task/todo-task.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import {
   MatButtonModule, MatCheckboxModule, MatCardModule, MatListModule, MatDividerModule,
-  MatChipsModule, MatIconModule
+  MatChipsModule, MatIconModule, MatFormFieldModule, MatInputModule
 } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatCardModule,
@@ -27,7 +29,10 @@ import {
     MatCheckboxModule,
     MatDividerModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
   ],

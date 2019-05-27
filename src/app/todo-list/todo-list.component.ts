@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {TodoListModel} from '../models/todo-list.model';
 import {TodoTaskService} from '../services/todo-task.service';
+import { TodoTaskModel } from '../models/todo-task.model';
 
 @Component({
   selector: 'app-todo-list',
@@ -9,16 +9,16 @@ import {TodoTaskService} from '../services/todo-task.service';
 })
 export class TodoListComponent implements OnInit {
 
-  todoListGroup: TodoListModel[];
+  todoList: TodoTaskModel[];
 
   constructor(private todoTaskService: TodoTaskService) {
   }
 
   ngOnInit() {
-    this.todoListGroup = this.todoTaskService.getAllTodoTask();
+    this.todoList = this.todoTaskService.getAllTodoTask();
   }
 
-  deleteTodoTask(id: string) {
+  deleteTodoTask(id: number) {
     this.todoTaskService.deleteTodoTask(id);
   }
 }

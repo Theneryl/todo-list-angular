@@ -1,35 +1,32 @@
 <div class="todo-list-group-container">
-  <div *ngFor="let todolist of todoListGroup">
-    <div class="todo-list-container">
-      <div class="todo-list-title">
-        <h3>{{todolist.title}}</h3>
-        <mat-chip-list>
-          <mat-chip color="primary" selected>{{todolist.todoList.length}}</mat-chip>
-        </mat-chip-list>
-      </div>
-      <div class="todo-list-content">
-        <mat-card *ngFor="let todotask of todolist.todoList" class="todo-list-item">
-          <mat-card-header>
-            <mat-card-title class="todo-task-card-title">
-              <span>{{todotask.title}}</span>
-            </mat-card-title>
-            <mat-card-subtitle>
-              <span>{{todotask.state}}</span>
-            </mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>{{todotask.description}}</mat-card-content>
-          <mat-card-footer class="todo-task-card-footer">
-            <button mat-mini-fab color="primary" routerLink="/todotask/{{todotask.id}}">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-mini-fab color="warn"
-                    (click)="deleteTodoTask(todotask.id)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </mat-card-footer>
-        </mat-card>
-      </div>
+  <div class="todo-list-container">
+    <div class="todo-list-title">
+      <h3>TODO LIST</h3>
+      <mat-chip-list>
+        <mat-chip color="primary" selected>{{todoList.length}}</mat-chip>
+      </mat-chip-list>
     </div>
-    <mat-divider vertical="true"></mat-divider>
+    <div class="todo-list-content">
+      <mat-card *ngFor="let todotask of todoList" class="todo-list-item">
+        <mat-card-header>
+          <mat-card-title class="todo-task-card-title">
+            <span>{{todotask.title}}</span>
+          </mat-card-title>
+          <mat-card-subtitle>
+            <span>{{todotask.state}}</span>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>{{todotask.description}}</mat-card-content>
+        <mat-card-footer class="todo-task-card-footer">
+          <button mat-mini-fab color="primary" routerLink="/todotask/{{todotask.id}}">
+            Edit
+          </button>
+          <button mat-mini-fab color="warn"
+                  (click)="deleteTodoTask(todotask.id)">
+            Close
+          </button>
+        </mat-card-footer>
+      </mat-card>
+    </div>
   </div>
 </div>

@@ -1,0 +1,18 @@
+.todo-task-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10vh 15vw;
+
+    .todo-task-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .todo-task-footer {
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: row;
+        padding: 10px;
+    }
+}
