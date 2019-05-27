@@ -9,7 +9,7 @@
         flex-direction: column;
         margin: 0 5px;
         height: 100%;
-    
+
         .todo-list-title {
             & > span {
                 margin: 0 5px;
@@ -24,12 +24,19 @@
 
             & > .todo-list-item {
                 margin: 5px 0;
-    
+
                 .todo-task-card-title {
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between
                 }
+
+              .todo-task-card-footer {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                padding: 10px;
+              }
             }
         }
     }

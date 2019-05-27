@@ -6,7 +6,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TodoTaskComponent } from './todo-task/todo-task.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
-import {MatButtonModule, MatCheckboxModule, MatCardModule, MatListModule, MatDividerModule, MatBadgeModule, MatChipsModule} from '@angular/material';
+import {
+  MatButtonModule, MatCheckboxModule, MatCardModule, MatListModule, MatDividerModule,
+  MatChipsModule, MatIconModule
+} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import {MatButtonModule, MatCheckboxModule, MatCardModule, MatListModule, MatDiv
     MatButtonModule,
     MatCheckboxModule,
     MatDividerModule,
-    MatChipsModule
+    MatChipsModule,
+    MatIconModule
   ],
   providers: [
   ],
