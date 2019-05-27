@@ -18,7 +18,12 @@ export class TodoTaskComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private todoTaskService: TodoTaskService) {
     this.route.params.subscribe( params => {
-      this.todoTask = todoTaskService.getTodoTask(params.id);
+
+      this.todoTask = null;
+      if (params.id) {
+        this.todoTask = todoTaskService.getTodoTask(params.id);
+      }
+
       if (!this.todoTask) {
         this.todoTask = this.todoTaskService.createTodoTask();
       }

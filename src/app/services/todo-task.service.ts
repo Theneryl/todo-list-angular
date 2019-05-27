@@ -43,15 +43,10 @@ export class TodoTaskService {
     console.log('updateTodoTask');
   }
 
-  deleteTodoTask(id: number) {
+  closeTodoTask(id: number) {
     /// TODO
-    console.log('deleteTodoTask');
-    /*
-    this.todoListGroup.forEach (list => {
-      let task = list.todoList.indexOf(task => task.id === id );
-      if (task) return task;
-    })
-    */
+      let task = this.todoList.find(task => task.id === id );
+      task.state = eTodoState.DONE;
   }
 
   getTodoTask(id: number) : TodoTaskModel{

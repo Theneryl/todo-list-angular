@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TodoTaskService} from '../services/todo-task.service';
 import { TodoTaskModel } from '../models/todo-task.model';
+import { eTodoState } from '../mocks/todo-state.mock';
 
 @Component({
   selector: 'app-todo-list',
@@ -11,6 +12,11 @@ export class TodoListComponent implements OnInit {
 
   todoList: TodoTaskModel[];
 
+  get list() {
+    this.todoList.reverse();
+    return this.todoList.sort(task => task.state === eTodoState.TODO ? -1 : 1);
+  }
+
   constructor(private todoTaskService: TodoTaskService) {
   }
 
@@ -18,7 +24,7 @@ export class TodoListComponent implements OnInit {
     this.todoList = this.todoTaskService.getAllTodoTask();
   }
 
-  deleteTodoTask(id: number) {
-    this.todoTaskService.deleteTodoTask(id);
+  closeTodoTask(id: number) {
+    this.todoTaskService.closeTodoTask(id);
   }
 }

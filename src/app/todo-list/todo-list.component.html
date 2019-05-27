@@ -1,13 +1,19 @@
 <div class="todo-list-group-container">
   <div class="todo-list-container">
-    <div class="todo-list-title">
-      <h3>TODO LIST</h3>
+    <div>
+      <div class="todo-list-title">
+          <h3>TODO LIST</h3>
+          <button mat-fab color="primary"
+                  routerLink="/todotask">
+            Add
+          </button>
+      </div>
       <mat-chip-list>
         <mat-chip color="primary" selected>{{todoList.length}}</mat-chip>
       </mat-chip-list>
     </div>
     <div class="todo-list-content">
-      <mat-card *ngFor="let todotask of todoList" class="todo-list-item">
+      <mat-card *ngFor="let todotask of list" class="todo-list-item">
         <mat-card-header>
           <mat-card-title class="todo-task-card-title">
             <span>{{todotask.title}}</span>
@@ -22,7 +28,7 @@
             Edit
           </button>
           <button mat-mini-fab color="warn"
-                  (click)="deleteTodoTask(todotask.id)">
+                  (click)="closeTodoTask(todotask.id)">
             Close
           </button>
         </mat-card-footer>

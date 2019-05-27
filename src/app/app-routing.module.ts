@@ -6,6 +6,7 @@ import { TodoTaskComponent } from './todo-task/todo-task.component';
 const routes: Routes = [
   { path: '', redirectTo: '/todolist', pathMatch: 'full' },
   { path: 'todolist', component: TodoListComponent},
+  { path: 'todotask', component: TodoTaskComponent},
   { path: 'todotask/:id', component: TodoTaskComponent}
 ];
 

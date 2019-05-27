@@ -12,9 +12,9 @@
         height: 100%;
 
         .todo-list-title {
-            & > span {
-                margin: 0 5px;
-            }
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
         }
 
         .todo-list-content {
