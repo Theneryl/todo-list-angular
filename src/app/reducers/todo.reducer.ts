@@ -81,6 +81,23 @@ export function todoReducer(
                 todoTask: action.todotask
             }
         }
+        case TodoActions.TodoActionTypes.todoClose : {
+            return {
+                ...state,
+                id: action.id
+            }
+        }
+        case TodoActions.TodoActionTypes.todoCloseSuccess : {
+            let task = this.state.todoList.find(task => task.id === action.id );
+            task.state = eTodoState.DONE;
+            this.state.todoList = state.todoList
+                .sort((task1, task2) => task1.create_at > task2.create_at ? 1 : -1)
+                .sort(task => task.state === eTodoState.TODO ? -1 : 1);
+
+            return {
+                ...state
+            }
+        }
         default : {
             return state;
         }

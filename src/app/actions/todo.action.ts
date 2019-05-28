@@ -12,9 +12,12 @@ export enum TodoActionTypes {
     todoCreateSuccess = '[Todo] Create Success',
 
     todoUpdate = '[Todo] Update',
-    todoUpdateSuccess = '[Todo] Update Success'
+    todoUpdateSuccess = '[Todo] Update Success',
+
+    todoClose = '[Todo] Close',
+    todoCloseSuccess = '[Todo] Close Success'
 }
- 
+
 export class TodoGetOne implements Action {
     readonly type = TodoActionTypes.todoGetOne;
    
@@ -61,7 +64,20 @@ export class TodoUpdateSuccess implements Action {
     constructor(public todotask: TodoTaskModel){}
 }
 
+export class TodoClose implements Action {
+    readonly type = TodoActionTypes.todoClose;
+
+    constructor(public id: number){}
+}
+ 
+export class TodoCloseSuccess implements Action {
+    readonly type = TodoActionTypes.todoCloseSuccess;
+
+    constructor(public id: number){}
+}
+
 export type TodoActionsUnion = TodoGetOne | TodoGetOneSuccess | 
                                 TodoGetAll | TodoGetAllSuccess |
                                 TodoCreate | TodoCreateSuccess |
-                                TodoUpdate | TodoUpdateSuccess;
+                                TodoUpdate | TodoUpdateSuccess |
+                                TodoClose | TodoCloseSuccess;

@@ -4,7 +4,7 @@ import { TodoTaskModel } from '../models/todo-task.model';
 import { eTodoState } from '../mocks/todo-state.mock';
 import { Store } from '@ngrx/store';
 import { TodoState } from '../reducers/todo.reducer';
-import { TodoGetAll } from '../actions/todo.action';
+import { TodoGetAll, TodoClose } from '../actions/todo.action';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -27,6 +27,6 @@ export class TodoListComponent implements OnInit {
   }
 
   closeTodoTask(id: number) {
-    this.todoTaskService.closeTodoTask(id);
+    this.store.dispatch(new TodoClose(id));
   }
 }

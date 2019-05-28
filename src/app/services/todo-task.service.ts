@@ -42,7 +42,7 @@ export class TodoTaskService {
     return task;
   }
 
-  closeTodoTask(id: number) {
+  closeTodoTask(id: number) :void {
       let task = this.todoList.find(task => task.id === id );
       task.state = eTodoState.DONE;
     }

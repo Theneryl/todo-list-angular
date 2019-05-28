@@ -42,4 +42,12 @@ export class AppEffects {
       return of(new TodoActions.TodoUpdateSuccess(this.todoTaskService.updateTodoTask(action.id, action.title, action.description)));
     })
   )
+  @Effect()
+  closeTodo$: Observable<Action> = this.actions$.pipe(
+    ofType<TodoActions.TodoClose>(TodoActions.TodoActionTypes.todoClose),
+    mergeMap(action => {
+      this.todoTaskService.closeTodoTask(action.id);
+      return of(new TodoActions.TodoCloseSuccess());
+    })
+  )
 }
