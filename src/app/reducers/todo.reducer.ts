@@ -44,7 +44,9 @@ export function todoReducer(
                 return {
                 ...state,
                 todoList: [
-                    ...action.todolist    
+                    ...action.todolist
+                    .sort((task1, task2) => task1.create_at > task2.create_at ? 1 : -1)
+                    .sort(task => task.state === eTodoState.TODO ? -1 : 1)
                 ]
             };
         }
@@ -58,7 +60,11 @@ export function todoReducer(
         case TodoActions.TodoActionTypes.todoCreateSuccess : {
             return {
                 ...state,
-                todoTask: action.todotask
+                todoTask: action.todotask,
+                todoList: [
+                    ...state.todoList,
+                    action.todotask
+                ]
             }
         }
         case TodoActions.TodoActionTypes.todoUpdate : {

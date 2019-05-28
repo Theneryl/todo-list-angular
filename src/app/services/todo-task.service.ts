@@ -1,12 +1,6 @@
 import { Injectable } from '@angular/core';
 import {eTodoState} from "../mocks/todo-state.mock";
 import {TodoTaskModel} from "../models/todo-task.model";
-import {TodoListModel} from "../models/todo-list.model";
-import { HttpXhrBackend, HttpRequest, HttpEvent, XhrFactory } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { TodoState } from '../reducers/todo.reducer';
-import { TodoGetAll } from '../actions/todo.action';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +10,7 @@ export class TodoTaskService {
   index = 0;
   todoList: TodoTaskModel[];
 
-  constructor(private store: Store<TodoState>) {
+  constructor() {
 
     this.todoList = [];
     for (let i = 1; i <= 10; i++) {
@@ -35,7 +29,6 @@ export class TodoTaskService {
       eTodoState.TODO
     )
     this.todoList.push(todotask);
-    this.store.dispatch(new TodoGetAll);
     return todotask;
   }
 
@@ -45,7 +38,6 @@ export class TodoTaskService {
       task.title = title;
       task.description = description;
       task.updated_at = new Date();
-      this.store.dispatch(new TodoGetAll);
     }
     return task;
   }
@@ -53,7 +45,6 @@ export class TodoTaskService {
   closeTodoTask(id: number) {
       let task = this.todoList.find(task => task.id === id );
       task.state = eTodoState.DONE;
-      this.store.dispatch(new TodoGetAll);
     }
 
   getTodoTask(id: number) : TodoTaskModel{
@@ -61,9 +52,7 @@ export class TodoTaskService {
   }
 
   getAllTodoTask() {
-    return this.todoList
-    .sort((task1, task2) => task1.create_at > task2.create_at ? 1 : -1)
-    .sort(task => task.state === eTodoState.TODO ? -1 : 1);
+    return this.todoList;
   }
 
 }

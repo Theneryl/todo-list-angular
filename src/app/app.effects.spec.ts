@@ -3,6 +3,8 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
 import { AppEffects } from './app.effects';
+import { StoreModule } from '@ngrx/store';
+import { todoReducer } from './reducers/todo.reducer';
 
 describe('AppEffects', () => {
   let actions$: Observable<any>;
@@ -10,6 +12,9 @@ describe('AppEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        StoreModule.forRoot({todo: todoReducer}),
+      ],
       providers: [
         AppEffects,
         provideMockActions(() => actions$)
