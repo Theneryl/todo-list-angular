@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { TodoTaskService } from '../services/todo-task.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { TodoState } from '../reducers/todo.reducer';
 import { TodoGetOne, TodoCreate, TodoUpdate } from '../actions/todo.action';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-todo-task',
   templateUrl: './todo-task.component.html',
   styleUrls: ['./todo-task.component.scss']
 })
-export class TodoTaskComponent implements OnInit {
+export class TodoTaskComponent implements OnInit, OnDestroy {
 
   todoTaskForm: FormGroup;
   isEdition = false;
   id = 0;
+  subs = new Subscription();
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -25,7 +27,7 @@ export class TodoTaskComponent implements OnInit {
   ngOnInit() {
     this.clearForm();
     
-    this.store.select(state => {
+    this.subs.add(this.store.select(state => {
       return state['todo'].todoTask;
     }).subscribe(todotask => {
       if (todotask) {
@@ -35,9 +37,9 @@ export class TodoTaskComponent implements OnInit {
           description: new FormControl(todotask.description)
         });
       }
-    });
+    }));
 
-    this.route.params.subscribe( params => {
+    this.subs.add(this.route.params.subscribe( params => {
       if (params.id !== undefined) {
         this.id = params.id;
         this.store.dispatch(new TodoGetOne(params.id));
@@ -45,7 +47,11 @@ export class TodoTaskComponent implements OnInit {
       else {
         this.clearForm()
       }
-    });
+    }));
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 
   clearForm() {
