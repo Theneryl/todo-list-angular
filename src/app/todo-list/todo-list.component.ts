@@ -2,6 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {TodoTaskService} from '../services/todo-task.service';
 import { TodoTaskModel } from '../models/todo-task.model';
 import { eTodoState } from '../mocks/todo-state.mock';
+import { Store } from '@ngrx/store';
+import { TodoState } from '../reducers/todo.reducer';
+import { TodoGetAll } from '../actions/todo.action';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-todo-list',
@@ -10,18 +14,16 @@ import { eTodoState } from '../mocks/todo-state.mock';
 })
 export class TodoListComponent implements OnInit {
 
-  todoList: TodoTaskModel[];
+  todoListState$: Observable<TodoTaskModel[]>;
 
-  get list() {
-    this.todoList.reverse();
-    return this.todoList.sort(task => task.state === eTodoState.TODO ? -1 : 1);
-  }
-
-  constructor(private todoTaskService: TodoTaskService) {
-  }
+  constructor(private todoTaskService: TodoTaskService,
+              private store: Store<TodoState>) {}
 
   ngOnInit() {
-    this.todoList = this.todoTaskService.getAllTodoTask();
+    this.todoListState$ = this.store.select(state => {
+      return state['todo'].todoList
+    } );
+    this.store.dispatch(new TodoGetAll);
   }
 
   closeTodoTask(id: number) {

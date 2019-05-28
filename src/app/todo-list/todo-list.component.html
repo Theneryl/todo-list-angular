@@ -8,12 +8,12 @@
             Add
           </button>
       </div>
-      <mat-chip-list>
-        <mat-chip color="primary" selected>{{todoList.length}}</mat-chip>
+      <mat-chip-list *ngIf="todoListState$ | async as todoListState">
+        <mat-chip color="primary" selected>{{todoListState.length}}</mat-chip>
       </mat-chip-list>
     </div>
-    <div class="todo-list-content">
-      <mat-card *ngFor="let todotask of list" class="todo-list-item">
+    <div class="todo-list-content" *ngIf="todoListState$ | async as todoListState">
+      <mat-card *ngFor="let todotask of todoListState" class="todo-list-item">
         <mat-card-header>
           <mat-card-title class="todo-task-card-title">
             <span>{{todotask.title}}</span>

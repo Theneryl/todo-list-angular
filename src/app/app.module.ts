@@ -11,6 +11,10 @@ import {
   MatChipsModule, MatIconModule, MatFormFieldModule, MatInputModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { todoReducer } from './reducers/todo.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './app.effects'
 
 @NgModule({
   declarations: [
@@ -32,7 +36,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     FormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    StoreModule.forRoot({todo: todoReducer}),
+    EffectsModule.forRoot([AppEffects])
   ],
   providers: [
   ],

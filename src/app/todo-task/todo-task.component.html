@@ -1,6 +1,5 @@
 <mat-card class="todo-task-container"
-          [formGroup]="todoTaskForm"
-          (ngSubmit)="onSubmit()">
+          [formGroup]="todoTaskForm">
   <mat-card-header>
     <mat-card-title>Todo Edition</mat-card-title>
     <mat-card-subtitle>Update</mat-card-subtitle>
@@ -17,9 +16,15 @@
     </mat-form-field>
   </mat-card-content>
   <mat-card-footer class="todo-task-footer">
+    <button mat-flat-button
+        color="accent"
+        routerLink="/todolist">
+        Cancel
+      </button>
       <button mat-flat-button
               color="primary"
               type="submit"
+              (click)="onSubmit()"
               [disabled]="!todoTaskForm.valid">
         Submit
       </button>

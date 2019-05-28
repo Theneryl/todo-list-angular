@@ -8,7 +8,7 @@ export class TodoTaskModel {
   title: string;
   description: string;
   create_at: Date;
-  started_at: Date;
+  updated_at: Date;
 
   constructor(id: number,
               title: string,
@@ -18,6 +18,7 @@ export class TodoTaskModel {
     this.title = title;
     this.description = description;
     this.create_at = new Date();
+    this.updated_at = new Date();
     this.state = state;
   }
 }
