@@ -1,6 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TodoTaskComponent } from './todo-task.component';
+import { MatCardModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatChip, MatChipsModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from '../app-routing.module';
+import { TodoListComponent } from '../todo-list/todo-list.component';
+import { todoReducer } from '../reducers/todo.reducer';
+import { StoreModule } from '@ngrx/store';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('TodoTaskComponent', () => {
   let component: TodoTaskComponent;
@@ -8,7 +15,19 @@ describe('TodoTaskComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TodoTaskComponent ]
+      imports: [
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatButtonModule,
+        FormsModule,
+        MatInputModule,
+        MatFormFieldModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        MatChipsModule,
+        StoreModule.forRoot({todo: todoReducer}),
+      ],
+      declarations: [ TodoTaskComponent, TodoListComponent ]
     })
     .compileComponents();
   }));
