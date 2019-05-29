@@ -47,7 +47,7 @@ export class AppEffects {
     ofType<TodoActions.TodoClose>(TodoActions.TodoActionTypes.todoClose),
     mergeMap(action => {
       this.todoTaskService.closeTodoTask(action.id);
-      return of(new TodoActions.TodoCloseSuccess());
+      return of(new TodoActions.TodoCloseSuccess(action.id));
     })
   )
 }

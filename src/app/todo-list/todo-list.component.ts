@@ -21,7 +21,7 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit() {
     this.todoListState$ = this.store.select(state => {
-      return state['todo'].todoList
+      return state['todo'].todoList;
     } );
     this.store.dispatch(new TodoGetAll);
   }
